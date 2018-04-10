@@ -4,8 +4,10 @@ require("dotenv").config();
 // Include the request npm package (Don't forget to run "npm install request" in this folder first!)
 var request = require("request");
 
-// Include the keys.js so we can use it in our Node app.
-var keys = require("keys.js");
-
-var spotify = new Spotify(keys.spotify);
-var client = new Twitter(keys.twitter);
+//Grab data from keys.js
+var keys = require('./keys.js');
+var request = require('request');
+var twitter = require('twitter');
+var spotify = require('spotify');
+var client = new twitter(keys.twitterKeys);
+var fs = require('fs');
