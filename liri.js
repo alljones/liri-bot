@@ -9,8 +9,13 @@ var keys = require('./keys.js');
 var request = require('request');
 var twitter = require('twitter');
 var spotify = require('spotify');
-var client = new twitter(keys.twitterKeys);
 var fs = require('fs');
+var client = new Twitter({
+    consumer_key: process.env.TWITTER_CONSUMER_KEY,
+    consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+    access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
+    access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
+  });
 
 //Node Argument
 var action = process.argv[2];
@@ -30,7 +35,7 @@ switch(action) {
         //code block
         break;
     default:
-        //code block
+        console.log("Try again, wrong command has been enter.");
 }
 
 //1. my-tweets
