@@ -12,7 +12,31 @@ var spotify = require('spotify');
 var client = new twitter(keys.twitterKeys);
 var fs = require('fs');
 
+//Node Argument
+var action = process.argv[2];
+
+//Switch Case
+switch(action) {
+    case "my-tweets":
+        showTweets();
+        break;
+    case "spotify-this-song":
+        //code block
+        break;
+    case "movie-this":
+        //code block
+        break;
+    case "do-what-it-says":
+        //code block
+        break;
+    default:
+        //code block
+}
+
 //1. my-tweets
+function showTweets(){
+
+}
 
 //2. spotify-this-song
 
