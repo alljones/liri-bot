@@ -6,27 +6,35 @@ var request = require("request");
 
 //Grab data from keys.js
 var keys = require('./keys.js');
-var twitter = require('twitter');
-var spotify = require('spotify');
-var fs = require('fs');
-var client = new Twitter({
 
-  });
+//Required Twitter API & Keys
+var Twitter = require('twitter');
+var twitterKeys = keys.twitter;
+
+//Required Spotify API & Keys
+var spotify = require('spotify');
+var spotKeys = keys.spotify;
+
+var fs = require('fs');
 
 // Input Argument
-var action = process.argv[2];
+var command = process.argv[2];
 var input = process.argv[3]; //song or movie input
 
 //Switch Case
-switch(action) {
+switch(command) {
     case "my-tweets":
         showTweets();
         break;
     case "spotify-this-song":
-        //code block
+        spotSong(input);
         break;
     case "movie-this":
-        showMovie();
+        if (input ==="undefined") {
+            showMovie('Mr. Nobody');
+        } else {
+            showMovie(input)
+        }
         break;
     case "do-what-it-says":
         //code block
@@ -37,10 +45,25 @@ switch(action) {
 
 //1. my-tweets
 function showTweets(){
+    var client = new Twitter({
+        twitterKeys
+    });
 
-}
+    var params = {screen_name: 'alljones', count: 20,};
+client.get('statuses/user_timeline', params, function(error, tweets, response) {
+    if (!error) {
+        console.log(response.created_at);
+        console.log(tweets);
+        console.log("- - - - - - - - - - - - -");
+    } else{
+        console.log(error);
+    }
+});
 
 //2. spotify-this-song
+function spotSong(song){
+
+}
 
 //3. movie-this
 function showMovie(movie) {
@@ -62,9 +85,12 @@ request(omdbUrl, function(error, response, body) {
     console.log(`Movie Plot: ${body.Plot}`);
     console.log(`Actor(s): ${body.Actors}`);
     console.log('- - - - - - - - - - - - - - - - -');
-  }
+  } else {
+    console.log("Something");
+  };
 });
 
 
 };
 //4. do-what-it-says
+};
